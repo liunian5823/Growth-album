@@ -9,4 +9,6 @@ const router = express.Router()
 router.post('/login', denglu.denglu)
 router.post('/image', denglu.imgae)
 router.post('/Year', denglu.Year)
+router.post('/Mouth', denglu.Mouth)
+router.post('/xiangqing', denglu.xiangqing)
 module.exports = router

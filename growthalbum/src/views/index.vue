@@ -3,15 +3,19 @@
     <el-row class="tac">
       <el-col :span="6" class="tac">
         <el-menu
-          default-active="1"
+          :default-active="index"
           class="el-menu-vertical-demo"
           @select="handleOpen"
           background-color="#545c64"
           text-color="#fff"
           active-text-color="#ffd04b"
         >
-          <el-menu-item :index="item.id" v-for="item in Yearlist" :key="item.id">
-            <span slot="title">{{item.Year}}</span>
+          <el-menu-item
+            :index="item.Year"
+            v-for="item in Yearlist"
+            :key="item.Year"
+          >
+            <span slot="title">{{ item.Year }}</span>
           </el-menu-item>
         </el-menu>
       </el-col>
@@ -40,9 +44,10 @@
               :src="item.url"
               alt=""
               style="margin: 10px"
-              @click="xiangqing(item.month)"
+              class="imageurl"
+              @click="xiangqing(item.MONTH)"
             ></el-image
-            ><span class="mingcheng">{{ item.month }}月</span></el-col
+            ><span class="mingcheng">{{ item.MONTH }}月</span></el-col
           >
         </div>
       </el-col>
@@ -55,42 +60,52 @@ export default {
   name: "index",
   data() {
     return {
-      index: 1,
+      index: "2021",
       item: [],
-      Yearlist:[]
+      Yearlist: [],
     };
   },
   mounted() {
     console.log(json);
-    this.item = json.item[1];
     this.huoquYear();
   },
   methods: {
-    huoquYear(){
-        var url = "http://localhost:3000/Year";
-          var obj = {
-           
-          };
-          this.$baseAPI
-            .POST(url, obj)
-            .then((response) => {
-              console.log(response)
-              this.Yearlist = response.data
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+    huoquYear() {
+      var url = "http://localhost:3000/Year";
+      var obj = {};
+      this.$baseAPI
+        .POST(url, obj)
+        .then((response) => {
+          console.log(response);
+          this.Yearlist = response.data;
+          console.log(response.data);
+          this.handleOpen(response.data[0].Year)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
     handleOpen(key) {
-      console.log(json.item[key]);
-      if(json.item[key] == undefined){
-          this.$message({
-          message: '还没有信息',
-          center: true
+      var url = "http://localhost:3000/Mouth";
+      var obj = {
+        Year: key,
+      };
+      this.$baseAPI
+        .POST(url, obj)
+        .then((response) => {
+          console.log(response);
+          for (let i = 0; i < response.data.length; i++) {
+            var ss = response.data[i].url.split(",");
+            response.data[i].url= "http://gz.chuangxiangit.cn/ertong" +  ss[0]
+            // response.data[i].url =
+            //   "http://gz.chuangxiangit.cn/ertong" + response.data[i].url;
+          }
+          console.log(response.data)
+          this.item = response.data;
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      }else{
-          this.item = json.item[key];
-      }
       this.index = key;
     },
     handleClose(key, keyPath) {
@@ -98,7 +113,7 @@ export default {
     },
     xiangqing(e) {
       console.log(e);
-      this.$router.push({ path: "/xiangqing", query: { id: e } });
+      this.$router.push({ path: "/xiangqing", query: { id: e ,year:this.index} });
     },
   },
 };
@@ -125,5 +140,8 @@ export default {
 .zhuti {
   height: 100%;
   overflow: scroll;
+}
+.imageurl {
+  width: 80%;
 }
 </style>
