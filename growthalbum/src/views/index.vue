@@ -10,20 +10,8 @@
           text-color="#fff"
           active-text-color="#ffd04b"
         >
-          <el-menu-item index="1">
-            <span slot="title">2021</span>
-          </el-menu-item>
-          <el-menu-item index="2">
-            <span slot="title">2022</span>
-          </el-menu-item>
-          <el-menu-item index="3">
-            <span slot="title">2023</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <span slot="title">2024</span>
-          </el-menu-item>
-          <el-menu-item index="5">
-            <span slot="title">2025</span>
+          <el-menu-item :index="item.id" v-for="item in Yearlist" :key="item.id">
+            <span slot="title">{{item.Year}}</span>
           </el-menu-item>
         </el-menu>
       </el-col>
@@ -69,13 +57,30 @@ export default {
     return {
       index: 1,
       item: [],
+      Yearlist:[]
     };
   },
   mounted() {
     console.log(json);
     this.item = json.item[1];
+    this.huoquYear();
   },
   methods: {
+    huoquYear(){
+        var url = "http://localhost:3000/Year";
+          var obj = {
+           
+          };
+          this.$baseAPI
+            .POST(url, obj)
+            .then((response) => {
+              console.log(response)
+              this.Yearlist = response.data
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+    },
     handleOpen(key) {
       console.log(json.item[key]);
       if(json.item[key] == undefined){

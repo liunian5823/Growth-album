@@ -8,4 +8,5 @@ const router = express.Router()
 //换取token
 router.post('/login', denglu.denglu)
 router.post('/image', denglu.imgae)
+router.post('/Year', denglu.Year)
 module.exports = router

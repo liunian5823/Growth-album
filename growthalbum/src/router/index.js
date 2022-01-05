@@ -18,6 +18,12 @@ const routes = [
       import("../views/xiangqing.vue"),
   },
   {
+    path: "/login",
+    name: "login",
+    component: () =>
+      import("../views/login.vue"),
+  },
+  {
     path: "/s1",
     name: "s1",
     component: () =>
@@ -30,5 +36,13 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
+router.beforeEach((to, from, next) => {
+    var role =  sessionStorage.getItem('id');
+    console.log(role)
+    if (role == null &&  to.path != '/login' ) {
+      next('/login');
+    }else{
+      next();
+    }
+  });
 export default router;

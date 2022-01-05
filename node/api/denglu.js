@@ -25,15 +25,23 @@ exports.denglu = (req, res) => {
     //  res.json({ code: 10000, message: req.body})
     const sqlStr = 'SELECT * FROM user WHERE name = "' + req.body.name + '" AND password = "' + req.body.password + '";'
     config.query(sqlStr, (error, results) => {
+
         if (results.length == 0 || results == undefined) {
-            res.json({ code: 500, message: "用户名或密码不正确，请重新输入" })
+            res.json({ code: '500', message: "用户名或密码不正确，请重新输入" })
         } else {
-            res.json({ code: 200, message: "登陆成功" })
+            res.json({ code: '200', data:results[0].id, message: "登陆成功" })
         }
     })
 },
 
-
+exports.Year = (req, res) => {
+    //req.body post获取前端传过来的值
+    //  res.json({ code: 10000, message: req.body})
+    const sqlStr = 'SELECT * FROM image;'
+    config.query(sqlStr, (error, results) => {
+        res.json({ code: '200', data:results, message: "获取成功" })
+    })
+},
 
 exports.imgae = (req, res) => {
     var form = new formidable.IncomingForm();
@@ -56,7 +64,7 @@ exports.imgae = (req, res) => {
         var avatarName = name + time + '.' + type;
         var newPath = form.uploadDir + "/" + avatarName;
         fs.renameSync(files.file.filepath, newPath); 
-        const sqlStr = "INSERT INTO image(url,sid,time) VALUE ('"+ "/node/upload/"+avatarName +"', "+ fields.id +", '"+ sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss') +"' );"
+        const sqlStr = "INSERT INTO image(url,sid,time,Year,Month) VALUE ('"+ "/node/upload/"+avatarName +"', "+ fields.id +", '"+ sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss') +"','"+sd.format(new Date(), 'YYYY')  +"','"+sd.format(new Date(), 'MM')  +"'  );"
         config.query(sqlStr, (error, results) => {
             if (results.length == 0 || results == undefined) {
                 res.json({ code: 500, message: '出错' })

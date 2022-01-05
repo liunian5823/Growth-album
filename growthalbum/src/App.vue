@@ -1,6 +1,6 @@
 <template>
-  <div style="height: 94%">
-    <div class="header">XXX成长记录</div>
+  <div style="height: 100%">
+    <!-- <div class="header">XXX成长记录</div> -->
     <router-view />
   </div>
 </template>
