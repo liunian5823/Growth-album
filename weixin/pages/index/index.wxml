@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<image class="images" src="../../img/header-1.png"></image>
+<view class="zhuti">
+  <text>账号：</text>
+  <input class="weui-input" maxlength="11" placeholder="请输入账号" bindinput="username" />
+  <text>密码：</text>
+  <input class="weui-input" password type="text" placeholder="请输入密码" bindinput="password" />
+  <button type="primary" loading="{{loading}}" bindtap="denglu" class="denglu">登录</button>
+</view>

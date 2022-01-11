@@ -1,0 +1,45 @@
+/* pages/list/list.wxss */
+page {
+  height: 100%;
+}
+
+.leftlist {
+  width: 20%;
+  height: 100%;
+  float: left;
+  text-align: center;
+  background-color: #303133;
+  color: #fff;
+}
+
+.xuanzhong {
+  color: rgb(255, 208, 75);
+  background-color: rgb(84, 92, 100);
+}
+
+.leftlist text {
+  width: 100%;
+  display: block;
+  line-height: 40px;
+}
+
+.rightlist {
+  width: 80%;
+  float: left;
+  height: 100%;
+}
+
+.imagess {
+  width: 43%;
+  margin: 0px 10px 20px 10px;
+  float: left;
+}
+
+.imagess image {
+  width: 100%;
+}
+.imagess text{
+  display: block;
+  width: 100%;
+  text-align: center;
+}

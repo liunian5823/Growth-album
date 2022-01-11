@@ -1,0 +1,16 @@
+<!--pages/list/list.wxml-->
+<view class="leftlist">
+<block wx:for="{{nian}}" wx:for-item="item">
+<text class="{{list == item.Year ? 'xuanzhong':''}}" bindtap="lists" data-id='{{item.Year}}'>{{item.Year}}</text>
+</block>
+
+</view>
+<view class="rightlist">
+<block wx:for="{{yue}}" wx:for-item="item">
+  <view class="imagess" bindtap="xiangqing" data-yue="{{item.Month}}" data-nian="{{item.Year}}">
+  <image 	mode="widthFix" src='http://gz.chuangxiangit.cn/ertong{{item.url}}'></image>
+  <text>{{item.Month}}月</text>
+</view>
+</block>
+
+</view>
