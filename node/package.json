@@ -17,6 +17,7 @@
     "formidable": "^2.0.1",
     "mysql": "^2.18.1",
     "path": "^0.12.7",
+    "request": "^2.88.2",
     "silly-datetime": "^0.1.2"
   }
 }

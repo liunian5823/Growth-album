@@ -1,7 +1,8 @@
 /* 引入express框架 */
 const express = require('express');
 const app = express();
- 
+
+
 /* 引入cors */
 const cors = require('cors');
 app.use(cors());
@@ -23,5 +24,5 @@ app.all('*', function(req, res, next) {
 });
 /* 引入mysql */
 
- 
+
 app.listen(3000, () => console.log('running on port 3000...'))

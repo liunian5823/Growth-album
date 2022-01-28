@@ -55,7 +55,7 @@ exports.denglu = (req, res) => {
         //  res.json({ code: 10000, message: req.body})
         const sqlStr = 'SELECT * FROM image WHERE Month = ' + req.body.mouth + ' and Year = ' + req.body.Year + ''
         config.query(sqlStr, (error, results) => {
-            
+
             res.json({ code: '200', data: results, message: "获取成功" })
         })
     },
