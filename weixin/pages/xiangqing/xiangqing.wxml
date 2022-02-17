@@ -1,0 +1,22 @@
+<view class='weui-cell-third'>
+  <block wx:for="{{axis}}" wx:key="*this" wx:for-index="indexs">
+    <view class='weui-cell-list'>
+
+      <view class='weui-cell-circle'></view>
+
+      <view class='weui-cell-line'>
+        <view class='weui-cell-time'>{{item.time}}</view>
+        <view class='weui-cell-event'>
+        <block wx:for="{{item.url}}" wx:for-item="lists" >
+          <image wx:if="{{lists.type == 'image'}}" bindtap="dianji" data-url="{{indexs}}" mode="widthFix" src="http://gz.chuangxiangit.cn/ertong{{lists.url}}"></image>
+          <video wx:else src="http://gz.chuangxiangit.cn/ertong{{lists.url}}" style="width: 100px;height: 200px;"></video>
+        </block>
+         
+        </view>
+        <view class='weui-cell-event'>备注：{{item.remarks}}</view>
+      </view>
+
+    </view>
+
+  </block>
+</view>

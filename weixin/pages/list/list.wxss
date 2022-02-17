@@ -43,3 +43,18 @@ page {
   width: 100%;
   text-align: center;
 }
+
+.denglu{
+  font-size: 14px;
+  font-weight: 100;
+  width: 120rpx !important;
+  height: 50rpx !important;
+  line-height: 50rpx;
+  padding: 0 5px !important;
+}
+
+.shangchuan{
+  position: absolute;
+  right: 20rpx;
+  bottom: 24rpx;
+}

@@ -16,6 +16,9 @@ Page({
   onLoad: function (options) {
    this.huoquYear()
   },
+  onShow () {
+		console.log("页面从后台进入页面时触发")
+	},
   lists(e){
     var than = this
     this.setData({
@@ -67,6 +70,10 @@ Page({
       success (res) {
         console.log(res.data)
         if(res.data.code == '200'){
+          for (let i = 0; i < res.data.data.length; i++) {
+            var n=res.data.data[i].url.split(",")[0];
+            res.data.data[i].url = n
+          }
           than.setData({
             yue:res.data.data
           })
@@ -81,7 +88,15 @@ Page({
     })    
   },
   xiangqing(e){
-    console.log(e.target.dataset.yue,e.target.dataset.nian)
+    console.log(e.currentTarget.dataset.yue,e.currentTarget.dataset.nian)
+    wx.navigateTo({
+      url: '/pages/xiangqing/xiangqing?nian='+e.currentTarget.dataset.nian + '&yue=' + e.currentTarget.dataset.yue,
+    })
+  },
+  denglu(){
+    wx.navigateTo({
+      url: '/pages/shangchuan/shangchuan'
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

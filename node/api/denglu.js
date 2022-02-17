@@ -1,28 +1,9 @@
-// app.get('/', (req, res) => {
-//     res.send('<p style="color:red">服务已启动</p>');
-// })
-
-// app.get('/api/getUserList', (req, res) => {
-//     //req.query get获取前端传过来的值
-//      res.json({ code: 10000, message: req.query})
-//     // const sqlStr = 'SELECT * FROM user'
-//     // conn.query(sqlStr, (error, results) => {
-//     //     res.json({ code: results})
-//     //     // if (error) return res.json({ code: 10001, message: error})
-//     //     // res.json({ code: 10000, message: results})
-//     // })
-// })
-// app.post('/api/getUserList1', (req, res) => {
-
-// })
 const config = require('../config/config')
 const formidable = require('formidable')
 var sd = require('silly-datetime');
 var fs = require("fs");
 var path = require("path");
 exports.denglu = (req, res) => {
-    //req.body post获取前端传过来的值
-    //  res.json({ code: 10000, message: req.body})
     const sqlStr = 'SELECT * FROM user WHERE name = "' + req.body.name + '" AND password = "' + req.body.password + '";'
     config.query(sqlStr, (error, results) => {
 
@@ -35,24 +16,18 @@ exports.denglu = (req, res) => {
 },
 
     exports.Year = (req, res) => {
-        //req.body post获取前端传过来的值
-        //  res.json({ code: 10000, message: req.body})
         const sqlStr = 'SELECT distinct Year FROM image;'
         config.query(sqlStr, (error, results) => {
             res.json({ code: '200', data: results, message: "获取成功" })
         })
     },
     exports.Mouth = (req, res) => {
-        //req.body post获取前端传过来的值
-        //  res.json({ code: 10000, message: req.body})
         const sqlStr = 'SELECT MONTH , url FROM image WHERE YEAR=' + req.body.Year + ';'
         config.query(sqlStr, (error, results) => {
             res.json({ code: '200', data: results, message: "获取成功" })
         })
     },
     exports.xiangqing = (req, res) => {
-        //req.body post获取前端传过来的值
-        //  res.json({ code: 10000, message: req.body})
         const sqlStr = 'SELECT * FROM image WHERE Month = ' + req.body.mouth + ' and Year = ' + req.body.Year + ''
         config.query(sqlStr, (error, results) => {
 
@@ -83,7 +58,6 @@ exports.denglu = (req, res) => {
             fs.renameSync(files.file.filepath, newPath);
             const sqlStr1 = 'SELECT * FROM image WHERE Year=' + sd.format(new Date(), 'YYYY') + ' and Month = ' + sd.format(new Date(), 'MM') + ' and date = ' + +sd.format(new Date(), 'DD') + ';'
             config.query(sqlStr1, (error, results) => {
-                // res.json({ code: 200, message: results  })
                 var id = results[0].id;
                 if (results.length == 0) {
                     const sqlStr = "INSERT INTO image(url,sid,time,Year,Month,date,remarks) VALUE ('" + "/node/upload/" + avatarName + "', " + fields.id + ", '" + sd.format(new Date(), 'YYYY-MM-DD HH:mm:ss') + "','" + sd.format(new Date(), 'YYYY') + "','" + sd.format(new Date(), 'MM') + "','" + sd.format(new Date(), 'DD') + "'" + fields.remarks + "  );"

@@ -1,0 +1,17 @@
+<view>
+<block wx:for="{{image}}" wx:for-item="liem" wx:for-index="index">
+<view class="dwwd">
+  <image  src="{{liem}}" class="imagess" bindtap="chakan" data-url="{{liem}}" data-index="{{index}}"></image>
+ <!-- <view class="zhezhao"></view> -->
+</view>
+
+</block>
+  <button bindtap='chooseImageTap' class="shangchuan">
+    <text>上传图片</text>
+  </button>
+
+  <textarea name="" id="" cols="10" rows="5" placeholder="备注" class="textareas" bindinput="shuru" ></textarea>
+
+
+  <button type="primary" bindtap="tijiao" >提交</button>
+</view>

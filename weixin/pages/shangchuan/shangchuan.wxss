@@ -1,0 +1,47 @@
+/* pages/shangchuan/shangchuan.wxss */
+
+.shangchuan {
+  background-color: #fbfdff;
+  border: 1px dashed #c0ccda;
+  border-radius: 6px;
+  box-sizing: border-box;
+  width: 300rpx !important;
+  height: 300rpx;
+  vertical-align: top;
+  font-size: 17px;
+  float: left;
+  margin: 10px 16px 10px 16px !important;
+}
+
+.shangchuan text {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.imagess {
+  width: 300rpx !important;
+  height: 300rpx;
+
+}
+
+.dwwd {
+  width: 300rpx !important;
+  height: 300rpx;
+  margin: 10px 16px 10px 16px !important;
+  float: left;
+  position: relative;
+}
+
+.textareas {
+  border: 1px solid #dcdfe6;
+  margin: 10px 16px 10px 16px !important;
+  width: 630rpx;
+  padding: 10px;
+  height: 125rpx;
+}
+

@@ -12,5 +12,7 @@
   <text>{{item.Month}}月</text>
 </view>
 </block>
-
+<view class="shangchuan" >
+  <button type="primary" bindtap="denglu" class="denglu">上传</button>
+</view>
 </view>

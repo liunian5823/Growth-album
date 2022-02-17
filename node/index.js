@@ -22,7 +22,4 @@ app.all('*', function(req, res, next) {
     res.header("Content-Type", "application/json;charset=utf-8");
     next();
 });
-/* 引入mysql */
-
-
 app.listen(3000, () => console.log('running on port 3000...'))
